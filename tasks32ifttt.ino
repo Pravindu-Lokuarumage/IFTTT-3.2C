@@ -1,20 +1,20 @@
 int photoresistor = A0;
 bool Sunlight = false;
-
+int light;
 
 void setup() {
     pinMode(photoresistor,INPUT);
 }
 
 void loop() {
-    int sun = analogRead(photoresistor);
-    Particle.publish("sun", String(sun));
+    light = analogRead(photoresistor);
+    Particle.publish("sun", String(light));
     
-    if(sun <20 && !Sunlight){
+    if(light <20 && !Sunlight){
         Particle.publish("Sunlight", "On");
         Sunlight = true;
         
-    }else if (sun > 20 && Sunlight){
+    }else if (light > 20 && Sunlight){
         Particle.publish("Sunlight", "Off");
         Sunlight = false;
     }
